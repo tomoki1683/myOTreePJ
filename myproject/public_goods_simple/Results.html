@@ -1,0 +1,24 @@
+{{ block title }}今回の結果{{ endblock }}
+{{ block content }}
+
+    <p>
+        【今回の結果】
+        <ul>
+            <li>あなたの初期保有ポイント：{{ C.ENDOWMENT }}</li>
+            <li>あなたの投資額：{{ player.contribution }}</li>
+            <li>グループ全体の投資額：{{ group.total_contribution }}</li>
+            <li>一人あたりの分配額：{{ group.individual_share }}</li>
+        </ul>
+    </p>
+    <p>
+        よって、あなたの今回の獲得ポイントは {{ player.payoff }} です。<br/>
+        （計算式：{{ player.payoff }} = {{ C.ENDOWMENT }} + {{ group.individual_share }} - {{ player.contribution }}）<br/>
+        　<br/>
+        気になる方は、結果は適宜メモしてください。<br/>
+        （運営側では控えていますが、最終結果を表示する画面は今回作成しておりません。）
+        <br/>
+    </p>
+
+    {{ next_button }}
+
+{{ endblock }}

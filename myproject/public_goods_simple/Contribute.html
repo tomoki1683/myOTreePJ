@@ -1,0 +1,33 @@
+{{ extends "global/Page.html" }}
+{{ block title }}公共財投資ゲーム{{ endblock }}
+{{ block content }}
+
+    <p>
+        【ゲーム情報】
+        <ul>
+            <li>現在：{{player.round_number}} / {{ C.NUM_ROUNDS }}回目</li>
+            <li>プレイヤーの人数：{{ C.PLAYERS_PER_GROUP }}人</li>
+            <li>初期保有ポイント：{{ C.ENDOWMENT }}</li>
+            <li>投資倍率：{{ C.MULTIPLIER }}</li>
+            <li>毎回、結果はリセットされます。初期保有ポイントは、常に {{ C.ENDOWMENT }} から始まります。</li>
+        </ul>
+    </p>
+    <p>
+        【投資結果の計算方法】
+        <ol>
+            <li>{{ C.PLAYERS_PER_GROUP }}人のプレイヤーの投資額を合計します。<br/>　</li>
+            <li>合計投資額が、{{C.MIN_ENDOWMENT}} を下回った場合は全額没収されます。<br/>
+                すなわち、初期保有ポイントである {{C.ENDOWMENT}} からあなたの投資額を引いたものが、あなたの今回のポイントとなります。<br/>
+                あなたが 30 points投資していた場合は、"100 - 30 = 70 points" 獲得できます。<br/>　</li>
+            <li>合計投資額が、{{C.MIN_ENDOWMENT}}を上回った場合は投資倍率の{{C.MULTIPLIER}}倍した金額を全員で山分けします。<br/>
+                すなわち、"初期保有ポイント + 山分け額 - あなたの投資額 = 獲得ポイント" となります。<br/>
+                あなたが 30 points 投資し、合計投資額が 300 points だった場合は、"100 + 300 * 2 / 4 - 30 = 220 points" 獲得できます。<br/>　</li>
+        </ol>
+    </p>
+
+
+    {{ formfields }}
+
+    {{ next_button }}
+
+{{ endblock }}

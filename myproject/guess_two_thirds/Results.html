@@ -1,0 +1,36 @@
+{{ block title }}今回の結果{{ endblock }}
+{{ block content }}
+
+    <p>
+        【今回の結果】
+        <ul>
+            <li>あなたの推測値：{{ player.guess }}</li>
+            <li>全プレイヤーの予想結果：{{ sorted_guesses }}
+                <br/>（小さい順に並び替えています。プレイヤー順とは関係ありません。）
+            </li>
+            <li>推測すべき値：{{ group.two_thirds_avg }}</li>
+            <li>グループの中で最も近かった値：{{ group.best_guess }}</li>
+        </ul>
+    </p>
+    <p>
+        {{ if player.is_winner }}
+            {{ if group.num_winners > 1 }}
+                よって、あなたは勝利しました。
+                <br/>あなたを含めて勝者は {{ group.num_winners }} 人です。
+            {{ else }}
+                よって、あなたは勝利しました。
+            {{ endif }}
+        {{ else }}
+            よって、あなたは敗北してしまいました…
+        {{ endif }}
+        <br/>
+        あなたの獲得ポイントは {{ player.payoff }} です。<br/>
+        　<br/>
+        気になる方は、結果は適宜メモしてください。<br/>
+        （運営側では控えていますが、最終結果を表示する画面は今回作成しておりません。）
+        <br/>
+    </p>
+
+    {{ next_button }}
+
+{{ endblock }}

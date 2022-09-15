@@ -1,0 +1,36 @@
+{{ block title }}美人投票{{ endblock }}
+{{ block content }}
+
+    <p>
+        【ゲーム情報】
+        <ul>
+            <li>現在：{{player.round_number}} / {{ C.NUM_ROUNDS }}回目</li>
+            <li>プレイヤーの人数：{{ C.PLAYERS_PER_GROUP }}人</li>
+            <li>選べる数値の範囲： 0 ~ {{ C.GUESS_MAX }}</li>
+            <li>推測する値：全員の平均値を 0.7 倍した値</li>
+            <li>勝者が獲得する額：{{ C.JACKPOT }}
+                <br/>（勝者が複数人いた場合は、{{ C.JACKPOT }} をその人数で山分けします。）
+            </li>
+        </ul>
+    </p>
+    <p>
+        【勝者の決定方法】
+        <ol>
+            <li>{{ C.PLAYERS_PER_GROUP }}人のプレイヤーの推測値が [20, 50, 80, 90] だったとします。</li>
+            <li>このとき、推測すべき値は " 42 =（20 + 50 + 80 + 90）/ 4 * 0.7 " だったことになります。</li>
+            <li>よって、"42" に１番近い "50" と推測したプレイヤーが勝者となり、{{ C.JACKPOT }} を獲得します。</li>
+        </ol>
+    </p>
+    {{ if player.round_number > 1 }}
+    <p>
+        前回までの正解は、以下の通りです。（左から順に１回目、２回目…）<br/>
+        {{ two_thirds_avg_history }}
+    </p>
+
+
+        {{ endif }}
+
+    {{ formfields }}
+    {{ next_button }}
+
+{{ endblock }}
